@@ -24,23 +24,8 @@ function setup_layers(pScope){
   var layer3 = new PLayer(pistons);
   layer3.mode( RING );
   layer3.set_boundary( 0, 0 );
-
-  //var layer4 = new PLayer(test);
-  //layer4.mode( RING );
-  //layer4.set_boundary(100, 1000);
 }
 
-//function test(x,y, animation, pScope){
-  //translate(0,0)
-  ///let angleOffset = (360 / SLICE_COUNT) / 1.5
-  //let backgroundArcStart = 270 - angleOffset;
-  //let backgroundArcEnd = 270 + angleOffset;
-  //fill(255,0,0);
-  //stroke(0)
-  //let radius = 1000*(1-animation.frame);
-  //ellipse(x,y,radius,radius); 
-
-//}
 function pistons(x, y, animation, pScope){
 
   // this is how you set up a background for a specific layer
@@ -61,12 +46,7 @@ function road(x, y, animation, pScope){
   scale(animation.frame*2);
   noFill();
   strokeWeight(90);
-  curve(-200,90,-80,50.5,85,44,200,80);
- // arc(x, 1, 1, 270-360/18,270+360/18);
- //beginShape();
- //vertex(1000*cos(270-360/18),1000*sin(270-360/18));
- //vertex(1000*cos(270+360/18),1000*sin(270+360/18));
- //endShape();
+  curve(-200,90,-140,-3.14,220,-3.14,200,80);
 }
 
 function ruf(x,y, animation, pScope){
