@@ -20,10 +20,21 @@ function setup_layers(pScope){
   var layer2 = new PLayer(ruf);
   layer2.mode( SWIRL(5) );
   layer2.set_boundary( 0, 1150 );
-
+  
+  var layer4 = new PLayer(smoke);
+  layer4.mode( SWIRL(5) );
+  layer4.set_boundary( 0, 1150);
+ 
   var layer3 = new PLayer(pistons);
   layer3.mode( RING );
   layer3.set_boundary( 0, 0 );
+}
+
+function smoke(x,y, animation, pScope){
+  ellipse(pow(animation.frame+0.1, 2)*-200,animation.frame+3,animation.frame*25,animation.frame*25);
+  ellipse(pow(animation.frame+0.1, 2)*-220,animation.frame-4,animation.frame*30,animation.frame*45);
+  ellipse(pow(animation.frame, 2)*-100,animation.frame+1,animation.frame*25,animation.frame*15);
+  ellipse(pow(animation.frame, 2)*-110,animation.frame-30,animation.frame*45,animation.frame*15);
 }
 
 function pistons(x, y, animation, pScope){
@@ -37,8 +48,8 @@ function pistons(x, y, animation, pScope){
   arc(x,y,600,600,backgroundArcStart,backgroundArcEnd); // draws "pizza slice" in the background
 
   fill(85,85,85)
-  rect(-8,-130-animation.wave()*100,40,40) // .wave is a cosine wave btw
-  rect(-8,-130-animation.wave()*100,10,100)
+  rect(0,-130-animation.wave()*100,10,100)
+  rect(-13,-130-animation.wave()*100,40,40) // .wave is a cosine wave btw
 }
 
 function road(x, y, animation, pScope){
@@ -46,14 +57,13 @@ function road(x, y, animation, pScope){
   scale(animation.frame*2);
   noFill();
   strokeWeight(90);
-  curve(-200,90,-140,-3.14,220,-3.14,200,80);
+  curve(-200,90,-150,0,200,-3.14,200,80);
 }
 
 function ruf(x,y, animation, pScope){
     scale(animation.frame*0.2);
     rotate(120);
-  pScope.draw_image("smallruf",x,-500);
+  pScope.draw_image("smallruf",x,0);
 }
-
 
 
