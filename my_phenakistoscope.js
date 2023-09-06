@@ -3,7 +3,7 @@ const SLICE_COUNT = 10;
 function setup_pScope(pScope){
   pScope.output_mode(ANIMATED_DISK);
   pScope.scale_for_screen(true);
-  pScope.draw_layer_boundaries(true);
+  pScope.draw_layer_boundaries(false);
   pScope.set_direction(CCW);
   pScope.set_slice_count(SLICE_COUNT);
   pScope.load_image("smallruf" , "png");
@@ -31,11 +31,23 @@ function setup_layers(pScope){
 }
 
 function smoke(x,y, animation, pScope){
-  ellipse(pow(animation.frame+0.1, 2)*-200,animation.frame+3,animation.frame*25,animation.frame*25);
-  ellipse(pow(animation.frame+0.1, 2)*-220,animation.frame-4,animation.frame*30,animation.frame*45);
-  ellipse(pow(animation.frame, 2)*-100,animation.frame+1,animation.frame*25,animation.frame*15);
+  ellipse(pow(animation.frame+0.1, 2)*-200,animation.frame,animation.frame*25,animation.frame*25);
+  ellipse(pow(animation.frame+0.1, 2)*-220,animation.frame-30,animation.frame*40,animation.frame*45);
+  ellipse(pow(animation.frame, 2)*-100,animation.frame-10,animation.frame*25,animation.frame*15);
   ellipse(pow(animation.frame, 2)*-110,animation.frame-30,animation.frame*45,animation.frame*15);
+  ellipse(pow(animation.frame, 2)*-140,animation.frame-10,animation.frame*30,animation.frame*30);
+  ellipse(pow(animation.frame, 2)*-120,animation.frame,animation.frame*20,animation.frame*20);
+  ellipse(pow(animation.frame, 2)*-100,animation.frame-10,animation.frame*20,animation.frame*20);
+  ellipse(pow(animation.frame, 2)*-200,animation.frame-55,animation.frame*40,animation.frame*40);
+  ellipse(pow(animation.frame, 2)*-150,animation.frame-50,animation.frame*20,animation.frame*20);
+  ellipse(pow(animation.frame, 2)*-100,animation.frame-20,animation.frame*25,animation.frame*25);
+  ellipse(pow(animation.frame, 2)*-160,animation.frame-30,animation.frame*20,animation.frame*20);
+  ellipse(pow(animation.frame, 2)*-165,animation.frame-40,animation.frame*24,animation.frame*24);
+  ellipse(pow(animation.frame, 2)*-180,animation.frame-20,animation.frame*25,animation.frame*25);
+  ellipse(pow(animation.frame, 2)*-170,animation.frame-20,animation.frame*25,animation.frame*25);
+  ellipse(pow(animation.frame, 2)*-190,animation.frame-15,animation.frame*25,animation.frame*25);
 }
+
 
 function pistons(x, y, animation, pScope){
 
@@ -57,7 +69,7 @@ function road(x, y, animation, pScope){
   scale(animation.frame*2);
   noFill();
   strokeWeight(90);
-  curve(-200,90,-150,0,200,-3.14,200,80);
+  curve(-200,150,-150,10,200,5,200,150);
 }
 
 function ruf(x,y, animation, pScope){
