@@ -56,12 +56,12 @@ function pistons(x, y, animation, pScope){
   let backgroundArcStart = 270 - angleOffset;
   let backgroundArcEnd = 270 + angleOffset;
 
-  fill(135,135,135)
+  fill(135,135,135);
   arc(x,y,600,600,backgroundArcStart,backgroundArcEnd); // draws "pizza slice" in the background
 
   fill(85,85,85)
-  rect(0,-130-animation.wave()*100,10,100)
-  rect(-13,-130-animation.wave()*100,40,40) // .wave is a cosine wave btw
+  rect(-10,-130-animation.wave()*120,10,100)
+  rect(-23,-130-animation.wave()*120,40,40) // .wave is a cosine wave btw
 }
 
 function road(x, y, animation, pScope){
@@ -69,7 +69,17 @@ function road(x, y, animation, pScope){
   scale(animation.frame*2);
   noFill();
   strokeWeight(90);
-  curve(-200,150,-150,10,200,5,200,150);
+  strokeCap(SQUARE);
+  curve(-200,117,-189,23,185,0,200,130);
+  //curve(-200,150,-150,10,200,5,200,150);
+  stroke(235, 213, 52);
+  strokeWeight(5);
+  strokeCap(ROUND);
+  line(-160,23,-120,16);
+  line(-90,10,-50,5);
+  line(-20,0,20,-7);
+  line(50,-7,90,-7);
+  line(120,-5,160,0);
 }
 
 function ruf(x,y, animation, pScope){
