@@ -28,6 +28,10 @@ function setup_layers(pScope){
   var layer3 = new PLayer(pistons);
   layer3.mode( RING );
   layer3.set_boundary( 0, 0 );
+
+  var layer5 = new PLayer(border);
+  layer5.mode( RING );
+  layer5.set_boundary(960,1150);
 }
 
 function smoke(x,y, animation, pScope){
@@ -47,7 +51,6 @@ function smoke(x,y, animation, pScope){
   ellipse(pow(animation.frame, 2)*-170,animation.frame-20,animation.frame*25,animation.frame*25);
   ellipse(pow(animation.frame, 2)*-190,animation.frame-15,animation.frame*25,animation.frame*25);
 }
-
 
 function pistons(x, y, animation, pScope){
 
@@ -87,5 +90,11 @@ function ruf(x,y, animation, pScope){
     rotate(120);
   pScope.draw_image("smallruf",x,0);
 }
-
+ function border(x,y,animation,pScope){
+  var orange = color(0);
+  var red = color(255);
+  var outsidecolor = lerpColor(red,orange,animation.frame);
+  pScope.fill_background(outsidecolor);
+  
+ }
 
