@@ -1,37 +1,47 @@
 const SLICE_COUNT = 10;
 
 function setup_pScope(pScope){
-  pScope.output_mode(ANIMATED_DISK);
+  pScope.output_mode(STATIC_DISK);
   pScope.scale_for_screen(true);
   pScope.draw_layer_boundaries(false);
   pScope.set_direction(CCW);
   pScope.set_slice_count(SLICE_COUNT);
   pScope.load_image("smallruf" , "png");
+  pScope.load_image_sequence("explosion", "png", 21);
 }
 
 function setup_layers(pScope){
 
   new PLayer(null, 133, 185, 199);  //lets us draw the whole circle background, ignoring the boundaries
 
-  var layer1 = new PLayer(road);
-  layer1.mode( SWIRL(5) );
-  layer1.set_boundary( 0, 1150 );
+  var spiral = new PLayer(road);
+  spiral.mode( SWIRL(5) );
+  spiral.set_boundary( 0, 1150 );
 
-  var layer2 = new PLayer(ruf);
-  layer2.mode( SWIRL(5) );
-  layer2.set_boundary( 0, 1150 );
+  var porsche = new PLayer(ruf);
+  porsche.mode( SWIRL(5) );
+  porsche.set_boundary( 0, 1150 );
   
-  var layer4 = new PLayer(smoke);
-  layer4.mode( SWIRL(5) );
-  layer4.set_boundary( 0, 1150);
- 
-  var layer3 = new PLayer(pistons);
-  layer3.mode( RING );
-  layer3.set_boundary( 0, 0 );
+  var tiresmoke = new PLayer(smoke);
+  tiresmoke.mode( SWIRL(5) );
+  tiresmoke.set_boundary( 0, 1150);
 
-  var layer5 = new PLayer(border);
-  layer5.mode( RING );
-  layer5.set_boundary(960,1150);
+  var centerpistons = new PLayer(pistons);
+  centerpistons.mode( RING );
+  centerpistons.set_boundary( 0, 0 );
+
+  var outline = new PLayer(border);
+  outline.mode( RING );
+  outline.set_boundary(960,1150);
+
+  var imagesequence = new PLayer(explosion);
+  imagesequence.mode( RING );
+  imagesequence.set_boundary( 0,1000 );
+}
+
+function explosion(x,y,animation,pScope){
+  scale(2.5);
+  pScope.draw_image_from_sequence("explosion", 0, 100, animation.frame);
 }
 
 function smoke(x,y, animation, pScope){
@@ -50,6 +60,10 @@ function smoke(x,y, animation, pScope){
   ellipse(pow(animation.frame, 2)*-180,animation.frame-20,animation.frame*25,animation.frame*25);
   ellipse(pow(animation.frame, 2)*-170,animation.frame-20,animation.frame*25,animation.frame*25);
   ellipse(pow(animation.frame, 2)*-190,animation.frame-15,animation.frame*25,animation.frame*25);
+  ellipse(pow(animation.frame, 2)*-230,animation.frame-25,animation.frame*25,animation.frame*25);
+  ellipse(pow(animation.frame, 2)*-238,animation.frame-45,animation.frame*28,animation.frame*28);
+  fill(150);
+  ellipse(pow(animation.frame, 2)*-238,animation.frame-45,animation.frame*28,animation.frame*28);
 }
 
 function pistons(x, y, animation, pScope){
@@ -68,7 +82,6 @@ function pistons(x, y, animation, pScope){
 }
 
 function road(x, y, animation, pScope){
-  
   scale(animation.frame*2);
   noFill();
   strokeWeight(90);
