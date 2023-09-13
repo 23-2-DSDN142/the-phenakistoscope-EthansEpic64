@@ -1,7 +1,7 @@
 const SLICE_COUNT = 10;
 
 function setup_pScope(pScope){
-  pScope.output_mode(STATIC_DISK);
+  pScope.output_mode(ANIMATED_DISK);
   pScope.scale_for_screen(true);
   pScope.draw_layer_boundaries(false);
   pScope.set_direction(CCW);
@@ -29,6 +29,10 @@ function setup_layers(pScope){
   var centerpistons = new PLayer(pistons);
   centerpistons.mode( RING );
   centerpistons.set_boundary( 0, 0 );
+
+  var centergear = new PLayer(driveshaft);
+  centergear.mode(RING);
+  centergear.set_boundary(0,75);
 
   var outline = new PLayer(border);
   outline.mode( RING );
@@ -73,11 +77,11 @@ function pistons(x, y, animation, pScope){
   let backgroundArcStart = 270 - angleOffset;
   let backgroundArcEnd = 270 + angleOffset;
 
-  fill(135,135,135);
+  fill(120); //very dark grey
   arc(x,y,600,600,backgroundArcStart,backgroundArcEnd); // draws "pizza slice" in the background
-
-  fill(85,85,85)
-  rect(-10,-130-animation.wave()*120,10,100)
+  noStroke();
+  fill(150)
+  rect(-10,-130-animation.wave()*120,10,180)
   rect(-23,-130-animation.wave()*120,40,40) // .wave is a cosine wave btw
 }
 
@@ -87,7 +91,7 @@ function road(x, y, animation, pScope){
   strokeWeight(90);
   strokeCap(SQUARE);
   curve(-200,117,-189,23,185,0,200,130);
-  //curve(-200,150,-150,10,200,5,200,150);
+  //curve(-200,150,-150,10,200,5,200,150); //this was the original curve I used before I embraced the jank
   stroke(235, 213, 52);
   strokeWeight(5);
   strokeCap(ROUND);
@@ -98,16 +102,23 @@ function road(x, y, animation, pScope){
   line(120,-5,160,0);
 }
 
-function ruf(x,y, animation, pScope){
+function ruf(x,y, animation, pScope){ //the lil car
     scale(animation.frame*0.2);
     rotate(120);
   pScope.draw_image("smallruf",x,0);
 }
- function border(x,y,animation,pScope){
-  var orange = color(0);
-  var red = color(255);
-  var outsidecolor = lerpColor(red,orange,animation.frame);
+
+function border(x,y,animation,pScope){
+  var black = color(0);
+  var white = color(255);
+  var outsidecolor = lerpColor(black,white,animation.frame);
   pScope.fill_background(outsidecolor);
-  
  }
 
+function driveshaft(x,y,animation,pScope){
+ pScope.fill_background(150);
+ fill(150);
+ noStroke();
+ rect(8,70, 20,20);
+ rect(-16,70,20,20);
+}
